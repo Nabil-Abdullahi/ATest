@@ -20,7 +20,7 @@ jobs:
       uses: github/issue-metrics@v3
       env:
         GH_TOKEN: ${{ secrets.FORK_TEST_1 }}
-        SEARCH_QUERY: 'repo:Nabil-Abdullahi/ATest created:2024-05-01..2024-06-31 -reason:"not planned"'
+        SEARCH_QUERY: 'repo:Nabil-Abdullahi/ATest is:pr '
 
     - name: Create issue for opened issues and prs
       uses: peter-evans/create-issue-from-file@v4
