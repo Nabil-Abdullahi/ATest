@@ -17,7 +17,7 @@ jobs:
     - name: Run issue-metrics tool
       uses: github/issue-metrics@v3
       env:
-        FTEST: ${{ secrets.FORK_TEST_1 }}
+        GH_TOKEN : ${{ secrets.FORK_TEST_1 }}
         SEARCH_QUERY: 'repo:owner/repo created:2023-05-01..2024-06-31 -reason:"not planned"'
 
     - name: Create issue
