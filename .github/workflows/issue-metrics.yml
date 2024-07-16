@@ -1,7 +1,7 @@
 name: Issue metrics
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main" , "Nabil-Abdullahi-patch-1"]
 
 permissions:
   contents: read
@@ -16,10 +16,12 @@ jobs:
 
     steps:
 
-    - name: Run issue-metrics tool for issues and prs opened in May 2024
+    - name: Run issue-metrics tool for all prs opened
       uses: github/issue-metrics@v3
       env:
         GH_TOKEN: ${{ secrets.FORK_TEST_1 }}
+        HIDE_TIME_TO_FIRST_RESPONSE: TRUE
+        HIDE_TIME_TO_ANSWER: TRUE
         SEARCH_QUERY: 'repo:Nabil-Abdullahi/ATest is:pr '
 
     - name: Create issue for opened issues and prs
