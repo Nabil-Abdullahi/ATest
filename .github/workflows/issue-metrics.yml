@@ -3,30 +3,44 @@ on:
   push:
     branches: [ "main" , "Nabil-Abdullahi-patch-1"]
 
-permissions:
-  contents: read
+# permissions:
+#   contents: read
+
+# jobs:
+#   build:
+#     name: issue metrics
+#     runs-on: ubuntu-latest
+#     permissions:
+#       issues: write
+#       pull-requests: read
+
+#     steps:
+
+#     - name: Run issue-metrics tool for all prs opened
+#       uses: github/issue-metrics@v3
+#       env:
+#         GH_TOKEN: ${{ secrets.FORK_TEST_1 }}
+#         HIDE_TIME_TO_FIRST_RESPONSE: TRUE
+#         HIDE_TIME_TO_ANSWER: TRUE
+#         SEARCH_QUERY: 'repo:Nabil-Abdullahi/ATest is:pr '
+
+#     - name: Create issue for opened issues and prs
+#       uses: peter-evans/create-issue-from-file@v4
+#       with:
+#         title: Monthly issue metrics report for opened issues and prs
+#         token: ${{ secrets.FORK_TEST_1 }}
+#         content-filepath: ./issue_metrics.md
 
 jobs:
-  build:
-    name: issue metrics
+  report:
+    name: Test
     runs-on: ubuntu-latest
-    permissions:
-      issues: write
-      pull-requests: read
 
     steps:
-
-    - name: Run issue-metrics tool for all prs opened
-      uses: github/issue-metrics@v3
-      env:
-        GH_TOKEN: ${{ secrets.FORK_TEST_1 }}
-        HIDE_TIME_TO_FIRST_RESPONSE: TRUE
-        HIDE_TIME_TO_ANSWER: TRUE
-        SEARCH_QUERY: 'repo:Nabil-Abdullahi/ATest is:pr '
-
-    - name: Create issue for opened issues and prs
-      uses: peter-evans/create-issue-from-file@v4
-      with:
-        title: Monthly issue metrics report for opened issues and prs
-        token: ${{ secrets.FORK_TEST_1 }}
-        content-filepath: ./issue_metrics.md
+      - uses: Addepar/github-metrics@v1.2.0
+        with:
+          github-owner: Nabil-Abdullahi
+          github-repo: ATest
+          github-token: ${{secrets.FORK_TEST_1}}
+          post-to-slack: "false"
+          log-debug-messages: "true"
